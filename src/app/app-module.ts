@@ -1,26 +1,21 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-import { App } from './app';
-import { PokemonList } from './components/pokemon-list/pokemon-list';
+// Importamos usando los nombres reales de tus archivos en las carpetas
+import { AppComponent } from './app.component';
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 
 @NgModule({
   declarations: [
-    App, 
-    PokemonList
+    AppComponent, 
+    PokemonListComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,       // Para poder hacer peticiones a la API
-    FormsModule,            // Para formularios básicos
-    ReactiveFormsModule     // Para usar formularios reactivos y debounce
+    HttpClientModule // Requerimiento obligatorio N°1
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideHttpClient()     // Provee HttpClient para Angular 19/20
-  ],
-  bootstrap: [App],
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
