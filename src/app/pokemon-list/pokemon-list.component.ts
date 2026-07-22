@@ -12,6 +12,7 @@ export class PokemonListComponent implements OnInit {
   pokemons: PokemonDetail[] = [];
   loading: boolean = true;
   errorMessage: string | null = null;
+  offset: number = 0; // Posición inicial
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -23,7 +24,7 @@ export class PokemonListComponent implements OnInit {
     this.loading = true;
     this.errorMessage = null;
 
-    this.pokemonService.getPokemons().subscribe({
+    this.pokemonService.getPokemons(this.offset).subscribe({
       next: (data: PokemonDetail[]) => {
         this.pokemons = data;
         this.loading = false;
@@ -34,5 +35,17 @@ export class PokemonListComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  paginaSiguiente(): void {
+    this.offset += 20;
+    this.cargarPokemons();
+  }
+
+  paginaAnterior(): void {
+    if (this.offset >= 20) {
+      this.offset -= 20;
+      this.cargarPokemons();
+    }
   }
 }

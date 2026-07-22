@@ -36,4 +36,10 @@
     </div>
 
   </div>
+
+  <!-- Botones de Paginación -->
+  <div *ngIf="!loading && !errorMessage" class="paginacion">
+    <button (click)="paginaAnterior()" [disabled]="offset === 0">Anterior</button>
+    <button (click)="paginaSiguiente()">Siguiente</button>
+  </div>
 </div>
